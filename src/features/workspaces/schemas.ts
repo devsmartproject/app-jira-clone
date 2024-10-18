@@ -5,4 +5,10 @@ export const createWorkspaceSchema = z.object({
     .string()
     .trim()
     .min(1, "Workspace name must be at least 1 character long"),
+  image: z
+    .union([
+      z.instanceof(File),
+      z.string().transform((value) => (value === "" ? undefined : value)),
+    ])
+    .optional(),
 });
